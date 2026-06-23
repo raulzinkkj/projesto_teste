@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .escuro {
+            background: #222;
+        }
+
+        #tema {
+            display: none;
+        }
+
+        .toggle {
+            width: 90px;
+            height: 45px;
+            border-radius: 50px;
+            background: #ddd;
+            position: relative;
+            cursor: pointer;
+            transform: 0.5s;
+        }
+
+        .toggle::before {
+            content: "☀️";
+            height: 35px;
+            width: 35px;
+            background: white;
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            border-radius: 50%;
+            transition: 0.5s;
+        }
+
+        #tema:checked+.toggle {
+            background: #333;
+        }
+
+        #tema:checked+.toggle::before {
+            content: "🌙";
+            left: 50px;
+            background: #dddddd76;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="checkbox" name="" id="tema">
+        <label for="tema" class="toggle"></label>
+    </div>
+    <script>
+        const checkbox = document.getElementById("tema");
+
+        checkbox.addEventListener("change", function () {
+            document.body.classList.toggle("escuro", this.checked);
+        })
+    </script>
+</body>
+
+</html>
