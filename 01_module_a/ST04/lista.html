@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI';
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .container {
+            width: 300px;
+            height: 500px;
+            border: solid 2px rgb(207, 64, 64);
+            background: #ffffa7;
+            padding: 20px;
+            gap: 10px;
+            border-radius: 10px;
+        }
+
+        li {
+            border-bottom: solid 1px black;
+            padding: 5px;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            border: none;
+            background: none;
+        }
+         .input {
+            width: 300px;
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        input {
+            width: 100%;
+            height: 35px;
+            border: solid 1px black;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .input button {
+            display: flex;
+            align-items: center;
+            height: 35px;
+            background: black;
+            color: white;
+            border-radius: 8px;
+            padding: 10px;
+            border: solid 1px black;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .input button:hover {
+            border: solid 1px black;
+            background: white;
+            color: black;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="input">
+        <input type="text" id="item" placeholder="Adicione um item">
+        <button onclick="adicionar()">Adicionar</button>
+    </div>
+    <div class="container">
+        <ul id="lista"></ul>
+    </div>
+
+    <script>
+        let itens = [];
+
+        //Carrega tarefas salvas
+        if (localStorage.getItem("itens")) {
+            itens = JSON.parse(localStorage.getItem("itens"));
+            renderizar();
+        }
+
+        function adicionar() {
+            let input = document.getElementById("item");
+
+            if(input.value.trim() === "") return;
+
+            itens.push({
+                texto: input.value,
+                concluida: false
+            });
+
+            salvar()
+            renderizar();
+        }
+
+        function salvar() {
+            localStorage.setItem(
+                "itens",
+                JSON.stringify(itens)
+            );
+        }
+
+        function renderizar() {
+
+            let lista = document.getElementById("lista");
+
+            lista.innerHTML = "";
+
+            itens.forEach((item, indice) => {
+                lista.innerHTML += `
+                <li class="${item.concluida ? 'concluida' : ''}"
+                    onclick="concluir(${indice})">
+                    ${item.texto}
+                    <button class="remover" onclick="remover(${indice})">❌</button>
+                </li>
+                `;
+            });
+        }
+
+        function concluir(indice) {
+            itens[indice].concluida = !itens[indice].concluida;
+            salvar();
+            renderizar();
+        }
+
+        function remover(indice) {
+            itens.splice(indice, 1);
+
+            salvar();
+            renderizar();
+        }
+    </script>
+</body>
+</html>

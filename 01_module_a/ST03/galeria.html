@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .foto {
+            display: inline-block;
+        }
+
+        img {
+            width: 300px;
+        }
+
+        #web:checked~.container .foto,
+        #mobile:checked~.container .foto,
+        #ui_ux:checked~.container .foto{
+            display: none;
+        }
+
+        #web:checked~.container .web {
+            display: inline-block;
+        }
+
+        #mobile:checked~.container .mobile {
+            display: inline-block;
+        }
+
+        #ui_ux:checked~.container .ui_ux {
+            display: inline-block;
+        }
+
+
+        #todos:checked~.container .foto {
+            display: inline-block;
+        }
+
+        @media (max-width: 600px) {
+            img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <input type="radio" name="filtro" id="todos" checked>
+    <label for="todos">Todos</label>
+
+    <input type="radio" name="filtro" id="web">
+    <label for="web">Web</label>
+
+    <input type="radio" name="filtro" id="mobile">
+    <label for="mobile">Mobile</label>
+
+    <input type="radio" name="filtro" id="ui_ux">
+    <label for="ui_ux">UI/UX</label>
+
+    <div class="container">
+        <div class="foto web"><img src="img/christopher-gower-m_HRfLhgABo-unsplash.jpg" alt=""></div>
+        <div class="foto mobile"><img src="img/william-hook-9e9PD9blAto-unsplash.jpg" alt=""></div>
+        <div class="foto web"><img src="img/domenico-loia-hGV2TfOh0ns-unsplash.jpg" alt=""></div>
+        <div class="foto mobile"><img src="img/priscilla-du-preez-BjhUu6BpUZA-unsplash.jpg" alt=""></div>
+        <div class="foto web"><img src="img/lee-campbell-DtDlVpy-vvQ-unsplash.jpg" alt=""></div>
+        <div class="foto mobile"><img src="img/vojtech-bruzek-J82GxqnwKSs-unsplash.jpg" alt=""></div>
+        <div class="foto ui_ux"><img src="img/ux-store-jJT2r2n7lYA-unsplash.jpg" alt=""></div>
+        <div class="foto ui_ux"><img src="img/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg" alt=""></div>
+        <div class="foto ui_ux"><img src="img/alvaro-reyes-KxVlKiqQObU-unsplash.jpg" alt=""></div>
+    </div>
+</body>
+
+</html>
