@@ -5,15 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 10rem;
+        }
+
+        button {
+            width: 100px;
+            border-radius: 50%;
+            border: solid 1px black;
+            padding: 10px;
+            background: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.2);
+        }
+
+        .botoes {
+            display: flex;
+            gap: 15px;
+            border: solid 1px black;
+            border-radius: 50px;
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <h1 id="tempo">00:00</h1>
 
     <div class="botoes">
-        <button onclick="iniciar()"></button>
-        <button onclick="pausa()"></button>
-        <button onclick="reiniciar()"></button>
+        <button onclick="iniciar()"><img src="img/play-solid-full.svg" alt=""></button>
+        <button onclick="pausa()"><img src="img/pause-solid-full.svg" alt=""></button>
+        <button onclick="reiniciar()"><img src="img/rotate-left-solid-full.svg" alt=""></button>
     </div>
 
     <script>
@@ -26,8 +68,7 @@
             let minutos = Math.floor(tempo / 60);
             let segundos = tempo % 60;
 
-            let hora = String(minutos).padStart(2, "0") + ":" +
-                String(segundos).padStart(2, "0");
+            let hora = String(minutos).padStart(2, "0") + ":" + String(segundos).padStart(2, "0");
             document.getElementById("tempo").textContent = hora;
             document.getElementById("tempo2").textContent = hora;
         }
