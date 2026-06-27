@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="tempo">00:00</h1>
+
+    <div class="botoes">
+        <button onclick="iniciar()"></button>
+        <button onclick="pausa()"></button>
+        <button onclick="reiniciar()"></button>
+    </div>
+
+    <script>
+        let tempo = 25 * 60;
+        let cronometro;
+
+        function attTela() {
+            document.body.style.backgroundColor = 'white';
+
+            let minutos = Math.floor(tempo / 60);
+            let segundos = tempo % 60;
+
+            let hora = String(minutos).padStart(2, "0") + ":" +
+                String(segundos).padStart(2, "0");
+            document.getElementById("tempo").textContent = hora;
+            document.getElementById("tempo2").textContent = hora;
+        }
+
+        function iniciar() {
+            cronometro = setInterval(() => {
+
+                if (tempo > 0) {
+                    tempo--;
+                    attTela();
+                } else {
+                    clearInterval(cronometro);
+                    document.body.style.backgroundColor = "#cb2519";
+                    alert("Tempo Esgotado!");
+                }
+            }, 1000);
+
+        }
+
+        function pausa() {
+            clearInterval(cronometro);
+        }
+
+        function reiniciar() {
+            clearInterval(cronometro);
+            tempo = 25 * 60;
+            attTela();
+        }
+
+        attTela();
+    </script>
+</body>
+
+</html>
