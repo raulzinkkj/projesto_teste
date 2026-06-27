@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Incidentes de TI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            width: 100%;
+            height: 80px;
+            background: red;
+        }
+
+        section {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            height: calc(100vh - 80px);
+        }
+
+        .principal {
+            background: purple;
+        }
+
+        .menu_lateral {
+            background: blue;
+        }
+
+        .aberto {
+            background: #0ea5e9;
+        }
+
+        .atendimento {
+            background: #7c3aed;
+        }
+
+        .resposta {
+            background: #f59e0b;
+        }
+
+        .escalonado {
+            background: #f97316;
+        }
+
+        .resolvido {
+            background: #22c55e;
+        }
+
+        .encerrado {
+            background: #64748b;
+        }
+
+        .baixa {
+            background: #22c55e;
+        }
+
+        .media {
+            background: #f59e0b;
+        }
+
+        .alta {
+            background: #f97316;
+        }
+
+        .critica {
+            background: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Central de Incidentes de TI</h1>
+        <div class="indicadores">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+    <section>
+        <div class="menu_lateral">
+            <h2>Filtros</h2>
+
+            <input type="text" name="" id="">
+
+            <select name="estatus" id="">
+                <option class="aberto" value="">Aberto</option>
+                <option class="atendimento" value="">Em atendimento</option>
+                <option class="resposta" value="">Aguardando resposta</option>
+                <option class="escalonado" value="">Escalonado</option>
+                <option class="resolvido" value="">Resolvido</option>
+                <option class="encerrado" value="">Encerrado</option>
+            </select>
+
+            <select name="prioridade" id="">
+                <option class="baixa" value="">Baixa</option>
+                <option class="media" value="">Média</option>
+                <option class="alta" value="">Alta</option>
+                <option class="critica" value="">Crítica</option>
+            </select>
+
+            <div class="situacao">
+                <label for="">Dentro do prazo</label>
+                <input type="checkbox" name="" id="">
+
+                <label for="">Em risco</label>
+                <input type="checkbox" name="" id="">
+
+                <label for="">Violado</label>
+                <input type="checkbox" name="" id="">
+            </div>
+
+            <button type="submit">Limpar Filtros</button>
+        </div>
+        <div class="principal">
+
+        </div>
+    </section>
+
+</body>
+
+</html>
