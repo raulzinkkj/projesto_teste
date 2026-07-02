@@ -6,7 +6,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $nome_usuario = $dados['nome_usuario'] ?? null;
     $email_usuario = $dados['email_usuario'] ?? null;
-    $senha_usuario = $dados['senha_usuario'] ?? null;
+    $senha_usuario = password_hash($dados['senha_usuario'], PASSWORD_DEFAULT) ?? null;
+
+    $sql_email = "SELECT * FROM usuarios WHERE email_usuario = :email_usuario";
+    $stmt_email = $conexao->prepare($sql_email);
+    $stmt_email->bindParam(":email_usuario", $email_usuario);
+    $stmt_email->execute();
+
+    if ($stmt_email->rowCount() > 0) {
+        echo "E-mail já cadastrado";
+
+        exit;
+    }
 
     $sql = "INSERT INTO usuarios (nome_usuario, email_usuario, senha_usuario)
             VALUES (:nome_usuario, :email_usuario, :senha_usuario)";
@@ -17,5 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':senha_usuario', $senha_usuario);
     $stmt->execute();
 
-    echo "Nome gravado com sucesso!";
+    echo "Usuario gravado com sucesso!";
+
+    header("Location: ../login.php");
 }

@@ -22,19 +22,19 @@
 
         .container {
             width: 300px;
-            height: 450px;
+            height: 520px;
             padding: 20px;
             display: flex;
             justify-content: center;
             flex-direction: column;
             border: solid 1px black;
             border-radius: 10px;
-            gap: 20px;
-        }   
+            gap: 10px;
+        }
 
         h1 {
             text-align: center;
-            font-size: 2.9rem;
+            font-size: 2.5rem;
         }
 
         input {
@@ -73,6 +73,21 @@
             color: red;
             font-weight: bold;
         }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            color: red;
+            margin: 5px;
+            font-size: 0.6rem;
+        }
+
+        .ok {
+            color: green;
+        }
     </style>
 </head>
 
@@ -89,7 +104,20 @@
         </div>
         <div class="junto">
             <label for="senha_usuario">Senha:</label>
-            <input type="password" name="senha_usuario" id="senha_usuario" placeholder="Digite sua Senha" required>
+            <input type="password" name="senha_usuario" id="senha_usuario" placeholder="Digite sua Senha" required onkeyup="validarSenha()">
+        </div>
+        <div class="junto">
+            <label for="confirma_senha_usuario">Confirmar Senha:</label>
+            <input type="password" name="confirma_senha_usuario" id="confirmar" placeholder="Confirme a Senha" onkeyup="verificarSenhas()">
+        </div>
+        <div class="requisitos">
+            <ul>
+                <li id="tam">❌ Pelo menos 8 caracteres</li>
+                <li id="mai">❌ Uma letra maiúscula</li>
+                <li id="min">❌ Uma letra minúscula</li>
+                <li id="num">❌ Um número</li>
+                <li id="esp">❌ Um caractere especial</li>
+            </ul>
         </div>
         <button onclick="gravar()">Enviar</button>
 
@@ -101,6 +129,30 @@
             let nome_usuario = document.getElementById("nome_usuario").value;
             let email_usuario = document.getElementById("email_usuario").value;
             let senha_usuario = document.getElementById("senha_usuario").value;
+            let confirmar = document.getElementById("confirmar").value;
+
+            if (nome_usuario.trim() == "") {
+                document.getElementById("mensagem").innerHTML = "Digite o seu nome!";
+
+                document.getElementById("nome_usuario").focus();
+
+                return;
+            }
+
+            if (nome_usuario.trim().length <= 3) {
+                document.getElementById("mensagem").innerHTML = "O nome deve ter mais de 3 caracteres.";
+
+                document.getElementById("nome_usuario").focus();
+
+                return;
+            }
+
+            if (!email_usuario.includes("@") || !email_usuario.includes(".")) {
+                document.getElementById("mensagem").innerHTML = "Email Inválido!";
+
+                return;
+            }
+
 
             if (senha_usuario.trim() == "") {
                 document.getElementById("mensagem").innerHTML =
@@ -108,6 +160,7 @@
 
                 return;
             }
+
 
             fetch("api/gravar_usuario.php", {
                     method: "POST",
@@ -125,8 +178,70 @@
                     document.getElementById("mensagem").innerHTML = dados;
                 });
 
+            document.getElementById("nome_usuario").value = "";
             document.getElementById("email_usuario").value = "";
             document.getElementById("senha_usuario").value = "";
+            document.getElementById("confirmar").value = "";
+        }
+
+        function validarSenha() {
+            let senha_usuario = document.getElementById("senha_usuario").value;
+
+            verificar(
+                senha_usuario.length >= 8,
+                "tam"
+            );
+
+            verificar(
+                /[A-Z]/.test(senha_usuario),
+                "mai"
+            );
+
+            verificar(
+                /[a-z]/.test(senha_usuario),
+                "min"
+            );
+
+            verificar(
+                /[0-9]/.test(senha_usuario),
+                "num"
+            );
+
+            verificar(
+                /[!@#$%^&*(),.?"":{}|<>]/.test(senha_usuario),
+                "esp"
+            );
+        }
+
+        function verificar(condicao, id) {
+            let item = document.getElementById(id);
+
+            if (condicao) {
+                item.classList.add("ok");
+                item.innerHTML = "✓ " + item.textContent.substring(2);
+            } else {
+                item.classList.remove("ok");
+                item.innerHTML = "❌ " + item.textContent.substring(2);
+            }
+        }
+
+        function verificarSenhas() {
+            let senha_usuario = document.getElementById("senha_usuario").value;
+            let confirmar = document.getElementById("confirmar").value;
+
+            if (confirmar == "") {
+                document.getElementById("mensagem").innerHTML = "";
+                return;
+            }
+            if (senha_usuario == confirmar) {
+                document.getElementById("mensagem").innerHTML = "✓ Senhas conferem";
+
+                document.getElementById("mensagem").style.color = "green";
+            } else {
+                document.getElementById("mensagem").innerHTML = "❌ Senhas não conferem";
+
+                document.getElementById("mensagem").style.color = "red";
+            }
         }
     </script>
 </body>
