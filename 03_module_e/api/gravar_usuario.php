@@ -30,5 +30,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo "Usuario gravado com sucesso!";
 
-    header("Location: ../login.php");
+    //header("Location: ../login.php");
 }

@@ -175,13 +175,15 @@
                 })
                 .then(resposta => resposta.text())
                 .then(dados => {
-                    document.getElementById("mensagem").innerHTML = dados;
+                    window.location.href = "login.php";
                 });
 
             document.getElementById("nome_usuario").value = "";
             document.getElementById("email_usuario").value = "";
             document.getElementById("senha_usuario").value = "";
             document.getElementById("confirmar").value = "";
+
+            header("Location: login.php");
         }
 
         function validarSenha() {
