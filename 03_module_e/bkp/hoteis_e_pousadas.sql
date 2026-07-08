@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/07/2026 às 03:32
+-- Tempo de geração: 08/07/2026 às 03:20
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -33,15 +33,16 @@ CREATE TABLE `pousadas_e_hoteis` (
   `local_pousada_e_hotel` varchar(100) DEFAULT NULL,
   `preco_pousada_e_hotel` varchar(100) DEFAULT NULL,
   `comodidades_pousada_e_hotel` text NOT NULL,
-  `imagem_pousada_e_hotel` varchar(255) DEFAULT NULL
+  `quartos_pousada_e_hotel` text NOT NULL,
+  `imagem_pousada_e_hotel` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pousadas_e_hoteis`
 --
 
-INSERT INTO `pousadas_e_hoteis` (`id_pousada_e_hotel`, `nome_pousada_e_hotel`, `local_pousada_e_hotel`, `preco_pousada_e_hotel`, `comodidades_pousada_e_hotel`, `imagem_pousada_e_hotel`) VALUES
-(1, 'Hotel Riad', 'União da Vitória, PR', '67,67', '[\"Centro\",\"Janela\",\"Cama\",\"Luz\",\"Encanamento\"]', '1783387829_riad.jpg');
+INSERT INTO `pousadas_e_hoteis` (`id_pousada_e_hotel`, `nome_pousada_e_hotel`, `local_pousada_e_hotel`, `preco_pousada_e_hotel`, `comodidades_pousada_e_hotel`, `quartos_pousada_e_hotel`, `imagem_pousada_e_hotel`) VALUES
+(2, 'Hotel Trivago', 'São Paulo, SP', '299,99', '[\"Wi-fi\",\"Café da manhã\",\"Ar condicionado\",\"Tv\"]', '[{\"nome_pousada_e_hotel\":\"Quarto king-size\",\"capacidade_pousada_e_hotel\":2,\"precoDiario\":299.99},{\"nome_pousada_e_hotel\":\"Quarto kids-size\",\"capacidade_pousada_e_hotel\":1,\"precoDiario\":199.99}]', '1783473522_66c2f8389b7f26db3230c7166c4052ccfb2c2ba4472e87f87d2c26ea361c.webp');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `pousadas_e_hoteis`
 --
 ALTER TABLE `pousadas_e_hoteis`
-  MODIFY `id_pousada_e_hotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pousada_e_hotel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
