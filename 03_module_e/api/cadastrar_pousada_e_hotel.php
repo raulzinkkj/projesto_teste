@@ -1,8 +1,8 @@
 <?php
 // Inclusão do arquivo de conexão
 include '../conexao/conexao.php';
+
 //Variáveis que pegam o valor do formulário
-//$dados = json_decode(file_get_contents("php://input"), true);
 $nome_pousada_e_hotel = $_POST['nome_pousada_e_hotel'];
 $local_pousada_e_hotel = $_POST['local_pousada_e_hotel'];
 $preco_pousada_e_hotel = $_POST['preco_pousada_e_hotel'];

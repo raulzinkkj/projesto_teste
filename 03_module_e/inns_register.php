@@ -412,6 +412,8 @@
 
             mostrarImagens();
         }
+
+        const checkbox = document.getElementById("tema");
     </script>
 </body>
 

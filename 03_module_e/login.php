@@ -138,8 +138,6 @@
                     document.getElementById("mensagem").innerHTML = "Erro ao realizar login.";
                 });
 
-            /* document.getElementById("email_usuario").value = "";
-             document.getElementById("senha_usuario").value = ""; */
         }
     </script>
 </body>

@@ -1,5 +1,5 @@
 <?php
-$local = 'localhost';
+$local = 'localhost'; 
 $banco = 'hoteis_e_pousadas';
 $usuario = 'root';
 $senha = '';
